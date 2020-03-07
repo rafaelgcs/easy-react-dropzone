@@ -57,7 +57,6 @@ var useStyles = makeStyles(function (theme) {
     section: {
       marginTop: 0,
       minHeight: 220,
-      // padding: 20,
       backgroundColor: '#f7f7f7',
       border: '3px dotted #adadad',
       alignContent: 'center',
@@ -67,10 +66,6 @@ var useStyles = makeStyles(function (theme) {
       textAlign: 'center'
     },
     button: {
-      // margin: theme.spacing(1),
-      // alignContent: 'center',
-      // width: '100%',
-      // borderRadius: 0,
       height: 60,
       maxWidth: '100%'
     },
@@ -109,7 +104,7 @@ var DropzoneComponent = React.forwardRef(function (props, ref) {
       showLoader = _useState4[0],
       setShowLoader = _useState4[1];
 
-  var fileTypes = props.fileTypes;
+  var fileExtensions = props.fileExtensions;
   var onChange = props.onChange;
   var textDropzone = props.textDropzone;
 
@@ -132,7 +127,7 @@ var DropzoneComponent = React.forwardRef(function (props, ref) {
     var newAcceptedFiles = [];
     acceptedFiles.map(function (file) {
       var arr = file.path.split('.');
-      if (fileTypes.includes(arr[arr.length - 1])) return newAcceptedFiles.push(file);
+      if (fileExtensions.includes(arr[arr.length - 1])) return newAcceptedFiles.push(file);
     });
 
     if (newAcceptedFiles.length > 0) {
@@ -261,13 +256,13 @@ var Dropzone = React.forwardRef(function (props, ref) {
   var onDrop = props.onDrop;
   var defaultValue = props.defaultValue;
   var onChange = props.onChange;
-  var fileTypes = props.fileTypes;
+  var fileExtensions = props.fileExtensions;
   var textDropzone = props.textDropzone;
   return React.createElement(SnackbarProvider, {
     maxSnack: 3
   }, React.createElement(DropzoneComponent$1, {
     textDropzone: textDropzone,
-    fileTypes: fileTypes,
+    fileExtensions: fileExtensions,
     onDrop: onDrop,
     defaultValue: defaultValue,
     onChange: onChange
