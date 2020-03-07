@@ -2,7 +2,7 @@ import React from 'react'
 import { SnackbarProvider } from 'notistack'
 import DropzoneComponent from './dropzoneComponent'
 
-export default React.forwardRef((props, ref) => {
+export const Dropzone = React.forwardRef((props, ref) => {
     const onDrop = props.onDrop;
     const defaultValue = props.defaultValue;
     const onChange = props.onChange
