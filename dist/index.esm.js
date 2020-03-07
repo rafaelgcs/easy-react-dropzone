@@ -104,7 +104,7 @@ var DropzoneComponent = React.forwardRef(function (props, ref) {
       showLoader = _useState4[0],
       setShowLoader = _useState4[1];
 
-  var fileExtensions = props.fileExtensions;
+  var fileExtensions = props.fileExtensions ? props.fileExtensions : [];
   var onChange = props.onChange;
   var textDropzone = props.textDropzone;
 
@@ -127,7 +127,12 @@ var DropzoneComponent = React.forwardRef(function (props, ref) {
     var newAcceptedFiles = [];
     acceptedFiles.map(function (file) {
       var arr = file.path.split('.');
-      if (fileExtensions.includes(arr[arr.length - 1])) return newAcceptedFiles.push(file);
+
+      if (fileExtensions.length > 0) {
+        if (fileExtensions.includes(arr[arr.length - 1])) return newAcceptedFiles.push(file);
+      } else {
+        return newAcceptedFiles.push(file);
+      }
     });
 
     if (newAcceptedFiles.length > 0) {

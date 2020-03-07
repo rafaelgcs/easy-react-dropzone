@@ -64,10 +64,10 @@ const DropzoneComponent = React.forwardRef((props, ref) => {
     const [filesAccepted, setFilesAccepted] = useState([]);
     const ColorLinearProgress = withStyles({
         colorPrimary: {
-            backgroundColor: props.progressColor ? props.progressColor : '#b2dfdb',
+            backgroundColor: props.progressColor ? props.progressColor : '#d1d1d1',
         },
         barColorPrimary: {
-            backgroundColor: props.progressBarColor ? props.progressBarColor : '#00695c',
+            backgroundColor: props.progressBarColor ? props.progressBarColor : '#878787',
         },
     })(LinearProgress)
     // const reset = props.reset;
@@ -158,7 +158,7 @@ const DropzoneComponent = React.forwardRef((props, ref) => {
 
     return (
         <section className={styles.section}>
-            <div {...getRootProps({ className: 'dropzone' })}>
+            <div style={{ cursor: 'pointer' }} {...getRootProps({ className: 'dropzone' })}>
                 <input {...getInputProps()} />
                 <p className={styles.title}>{textDropzone ? textDropzone : `Arraste e solte arquivos ou clique aqui`}</p>
                 <BackupIcon color={'disabled'} style={{ fontSize: 90 }} />

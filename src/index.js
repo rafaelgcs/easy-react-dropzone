@@ -8,10 +8,14 @@ export const Dropzone = React.forwardRef((props, ref) => {
     const onChange = props.onChange
     const fileExtensions = props.fileExtensions;
     const textDropzone = props.textDropzone;
+    const progressColor = props.progressColor;
+    const progressBarColor = props.progressBarColor;
 
     return (
         <SnackbarProvider maxSnack={3}>
             <DropzoneComponent
+                progressBarColor={progressBarColor}
+                progressColor={progressColor}
                 textDropzone={textDropzone}
                 fileExtensions={fileExtensions}
                 onDrop={onDrop}
