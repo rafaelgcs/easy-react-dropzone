@@ -10,6 +10,24 @@ import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { withSnackbar, SnackbarProvider } from 'notistack';
 
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
 function _slicedToArray(arr, i) {
   return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
 }
@@ -115,10 +133,10 @@ var DropzoneComponent = React.forwardRef(function (props, ref) {
 
   var ColorLinearProgress = withStyles({
     colorPrimary: {
-      backgroundColor: props.progressColor ? props.progressColor : '#b2dfdb'
+      backgroundColor: props.progressColor ? props.progressColor : '#d1d1d1'
     },
     barColorPrimary: {
-      backgroundColor: props.progressBarColor ? props.progressBarColor : '#00695c'
+      backgroundColor: props.progressBarColor ? props.progressBarColor : '#878787'
     }
   })(LinearProgress); // const reset = props.reset;
 
@@ -231,9 +249,13 @@ var DropzoneComponent = React.forwardRef(function (props, ref) {
   var styles = useStyles();
   return React.createElement("section", {
     className: styles.section
-  }, React.createElement("div", getRootProps({
+  }, React.createElement("div", _extends({
+    style: {
+      cursor: 'pointer'
+    }
+  }, getRootProps({
     className: 'dropzone'
-  }), React.createElement("input", getInputProps()), React.createElement("p", {
+  })), React.createElement("input", getInputProps()), React.createElement("p", {
     className: styles.title
   }, textDropzone ? textDropzone : "Arraste e solte arquivos ou clique aqui"), React.createElement(BackupIcon, {
     color: 'disabled',
@@ -263,9 +285,13 @@ var Dropzone = React.forwardRef(function (props, ref) {
   var onChange = props.onChange;
   var fileExtensions = props.fileExtensions;
   var textDropzone = props.textDropzone;
+  var progressColor = props.progressColor;
+  var progressBarColor = props.progressBarColor;
   return React.createElement(SnackbarProvider, {
     maxSnack: 3
   }, React.createElement(DropzoneComponent$1, {
+    progressBarColor: progressBarColor,
+    progressColor: progressColor,
     textDropzone: textDropzone,
     fileExtensions: fileExtensions,
     onDrop: onDrop,
