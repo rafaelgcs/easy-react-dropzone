@@ -6,14 +6,14 @@ export const Dropzone = React.forwardRef((props, ref) => {
     const onDrop = props.onDrop;
     const defaultValue = props.defaultValue;
     const onChange = props.onChange
-    const fileTypes = props.fileTypes;
+    const fileExtensions = props.fileExtensions;
     const textDropzone = props.textDropzone;
 
     return (
         <SnackbarProvider maxSnack={3}>
             <DropzoneComponent
                 textDropzone={textDropzone}
-                fileTypes={fileTypes}
+                fileExtensions={fileExtensions}
                 onDrop={onDrop}
                 defaultValue={defaultValue}
                 onChange={onChange} />

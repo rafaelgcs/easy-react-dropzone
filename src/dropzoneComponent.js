@@ -19,7 +19,6 @@ const useStyles = makeStyles(theme => ({
     section: {
         marginTop: 0,
         minHeight: 220,
-        // padding: 20,
         backgroundColor: '#f7f7f7',
         border: '3px dotted #adadad',
         alignContent: 'center',
@@ -29,10 +28,6 @@ const useStyles = makeStyles(theme => ({
         textAlign: 'center'
     },
     button: {
-        // margin: theme.spacing(1),
-        // alignContent: 'center',
-        // width: '100%',
-        // borderRadius: 0,
         height: 60,
         maxWidth: '100%',
     },
@@ -63,7 +58,7 @@ const useStyles = makeStyles(theme => ({
 const DropzoneComponent = React.forwardRef((props, ref) => {
     const [showFiles, setShowFiles] = useState(false);
     const [showLoader, setShowLoader] = useState(false);
-    const fileTypes = props.fileTypes;
+    const fileExtensions = props.fileExtensions;
     const onChange = props.onChange;
     const textDropzone = props.textDropzone;
     const [filesAccepted, setFilesAccepted] = useState([]);
@@ -83,7 +78,7 @@ const DropzoneComponent = React.forwardRef((props, ref) => {
         acceptedFiles.map(file => {
             let arr = file.path.split('.');
 
-            if (fileTypes.includes(arr[arr.length - 1]))
+            if (fileExtensions.includes(arr[arr.length - 1]))
                 return newAcceptedFiles.push(file);
         });
 

@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
 var React = require('react');
@@ -262,7 +264,7 @@ var DropzoneComponent = React__default.forwardRef(function (props, ref) {
 });
 var DropzoneComponent$1 = notistack.withSnackbar(DropzoneComponent);
 
-var index = React__default.forwardRef(function (props, ref) {
+var Dropzone = React__default.forwardRef(function (props, ref) {
   var onDrop = props.onDrop;
   var defaultValue = props.defaultValue;
   var onChange = props.onChange;
@@ -279,4 +281,4 @@ var index = React__default.forwardRef(function (props, ref) {
   }));
 });
 
-module.exports = index;
+exports.Dropzone = Dropzone;

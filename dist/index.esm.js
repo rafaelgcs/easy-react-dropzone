@@ -257,7 +257,7 @@ var DropzoneComponent = React.forwardRef(function (props, ref) {
 });
 var DropzoneComponent$1 = withSnackbar(DropzoneComponent);
 
-var index = React.forwardRef(function (props, ref) {
+var Dropzone = React.forwardRef(function (props, ref) {
   var onDrop = props.onDrop;
   var defaultValue = props.defaultValue;
   var onChange = props.onChange;
@@ -274,4 +274,4 @@ var index = React.forwardRef(function (props, ref) {
   }));
 });
 
-export default index;
+export { Dropzone };
