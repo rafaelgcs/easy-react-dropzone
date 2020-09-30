@@ -132,7 +132,7 @@ var useStyles = styles.makeStyles(function (theme) {
     }
   };
 });
-var DropzoneComponent = /*#__PURE__*/React__default.forwardRef(function (props, ref) {
+var DropzoneComponent = /*#__PURE__*/React.forwardRef(function (props, ref) {
   var _useState = React.useState(false),
       _useState2 = _slicedToArray(_useState, 2),
       showFiles = _useState2[0],
@@ -150,16 +150,8 @@ var DropzoneComponent = /*#__PURE__*/React__default.forwardRef(function (props, 
   var _useState5 = React.useState([]),
       _useState6 = _slicedToArray(_useState5, 2),
       filesAccepted = _useState6[0],
-      setFilesAccepted = _useState6[1];
+      setFilesAccepted = _useState6[1]; // const reset = props.reset;
 
-  var ColorLinearProgress = styles.withStyles({
-    colorPrimary: {
-      backgroundColor: props.progressColor ? props.progressColor : '#d1d1d1'
-    },
-    barColorPrimary: {
-      backgroundColor: props.progressBarColor ? props.progressBarColor : '#878787'
-    }
-  })(LinearProgress); // const reset = props.reset;
 
   var onDrop = React.useCallback(function (acceptedFiles) {
     // Do something with the files
@@ -247,16 +239,22 @@ var DropzoneComponent = /*#__PURE__*/React__default.forwardRef(function (props, 
   var resetFiles = function resetFiles(index) {
     setShowFiles(false);
     setShowLoader(true);
+    console.log("Passou dos Sets Bool");
     var news = [];
     news = filesAccepted;
     news.splice(index, 1);
+    console.log("Passou do 'news'");
     setTimeout(function () {
+      console.log("entrou no setTimeOut");
+
       if (news.length > 0) {
+        console.log("new length > 0");
         setFilesAccepted(news);
         setShowFiles(true);
         onChange(news);
         setShowLoader(false);
       } else {
+        console.log("new length <= 0");
         setFilesAccepted([]);
         setShowFiles(false);
         onChange([]);
@@ -265,9 +263,18 @@ var DropzoneComponent = /*#__PURE__*/React__default.forwardRef(function (props, 
 
       openNotification('Você alterou os arquivos para o envio...', 'info');
     }, 500);
+    console.log("passou do timeOut");
   };
 
   var styles$$1 = useStyles();
+  var ColorLinearProgress = styles.withStyles({
+    colorPrimary: {
+      backgroundColor: props.progressColor ? props.progressColor : '#d1d1d1'
+    },
+    barColorPrimary: {
+      backgroundColor: props.progressBarColor ? props.progressBarColor : '#878787'
+    }
+  })(LinearProgress);
   return /*#__PURE__*/React__default.createElement("section", {
     className: styles$$1.section
   }, /*#__PURE__*/React__default.createElement("div", _extends({
@@ -300,7 +307,7 @@ var DropzoneComponent = /*#__PURE__*/React__default.forwardRef(function (props, 
 });
 var DropzoneComponent$1 = notistack.withSnackbar(DropzoneComponent);
 
-var Dropzone = /*#__PURE__*/React__default.forwardRef(function (props, ref) {
+var Dropzone = /*#__PURE__*/React.forwardRef(function (props, ref) {
   var onDrop = props.onDrop;
   var defaultValue = props.defaultValue;
   var onChange = props.onChange;
