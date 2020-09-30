@@ -116,6 +116,7 @@ const MyDropzonePage = () => {
       progressColor="#0c81c4" // Progress Color - blue
       fileExtensions={extensionsAccepted}
       defaultValue={files}
+      messages={texts}
       onChange={(selectedFiles) => setFiles(selectedFiles)}
     />
   </div>
