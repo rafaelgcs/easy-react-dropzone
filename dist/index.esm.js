@@ -8,6 +8,10 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import BackupIcon from '@material-ui/icons/Backup';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import ImageIcon from '@material-ui/icons/Image';
+import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
+import OndemandVideoIcon from '@material-ui/icons/OndemandVideo';
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import { withSnackbar, SnackbarProvider } from 'notistack';
 
 function _extends() {
@@ -125,6 +129,13 @@ var useStyles = makeStyles(function (theme) {
     }
   };
 });
+var defaultMessages = {
+  removedFile: "Você alterou os arquivos para o envio...",
+  manyFilesSelecteds: "Arquivos selecionados com sucesso!",
+  oneFileSelected: "Arquivo selecionado com sucesso!",
+  someFilesDontHaveEnabledExtension: "Alguns dos arquivos enviados possuem extensões que não são suportadas...",
+  someFilesCannotToBeSended: "A extensão do arquivo selecionado não é aceita."
+};
 var DropzoneComponent = /*#__PURE__*/forwardRef(function (props, ref) {
   var _useState = useState(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -139,6 +150,7 @@ var DropzoneComponent = /*#__PURE__*/forwardRef(function (props, ref) {
   var fileExtensions = props.fileExtensions ? props.fileExtensions : [];
   var onChange = props.onChange;
   var textDropzone = props.textDropzone;
+  var titleLoadedFiles = props.titleLoadedFiles;
 
   var _useState5 = useState([]),
       _useState6 = _slicedToArray(_useState5, 2),
@@ -166,8 +178,14 @@ var DropzoneComponent = /*#__PURE__*/forwardRef(function (props, ref) {
         if (onChange) {
           onChange(newAcceptedFiles);
           setFilesAccepted(newAcceptedFiles);
-          openNotification('Arquivo selecionado com sucesso!', 'success');
-          openNotification('Alguns dos arquivos enviados possuem extensões que não são suportadas...', 'info');
+
+          if (newAcceptedFiles.length != 1) {
+            openNotification(props.messages ? props.messages.manyFilesSelecteds ? props.messages.manyFilesSelecteds : defaultMessages.manyFilesSelecteds : defaultMessages.manyFilesSelecteds, 'success');
+          } else {
+            openNotification(props.messages ? props.messages.oneFileSelected ? props.messages.oneFileSelected : defaultMessages.oneFileSelected : defaultMessages.oneFileSelected, 'success');
+          }
+
+          openNotification(props.messages ? props.messages.someFilesDontHaveEnabledExtension ? props.messages.someFilesDontHaveEnabledExtension : defaultMessages.someFilesDontHaveEnabledExtension : defaultMessages.someFilesDontHaveEnabledExtension, 'info');
         }
       } else {
         setShowFiles(true);
@@ -175,14 +193,19 @@ var DropzoneComponent = /*#__PURE__*/forwardRef(function (props, ref) {
         if (onChange) {
           setFilesAccepted(newAcceptedFiles);
           onChange(newAcceptedFiles);
-          openNotification('Arquivo selecionado com sucesso!', 'success');
+
+          if (newAcceptedFiles.length != 1) {
+            openNotification(props.messages ? props.messages.manyFilesSelecteds ? props.messages.manyFilesSelecteds : defaultMessages.manyFilesSelecteds : defaultMessages.manyFilesSelecteds, 'success');
+          } else {
+            openNotification(props.messages ? props.messages.oneFileSelected ? props.messages.oneFileSelected : defaultMessages.oneFileSelected : defaultMessages.oneFileSelected, 'success');
+          }
         }
       }
     } else {
       onChange([]);
       setFilesAccepted([]);
       setShowFiles(false);
-      openNotification('A extensão do arquivo selecionado não é aceita.', 'error');
+      openNotification(props.messages ? props.messages.someFilesCannotToBeSended ? props.messages.someFilesCannotToBeSended : defaultMessages.someFilesCannotToBeSended : defaultMessages.someFilesCannotToBeSended, 'error');
     } // onChange(newAcceptedFiles);
 
 
@@ -198,16 +221,14 @@ var DropzoneComponent = /*#__PURE__*/forwardRef(function (props, ref) {
       isDragActive = _useDropzone.isDragActive;
 
   var files = filesAccepted.map(function (file, index) {
+    var arr = file.path.split('.');
+    var ext = arr[arr.length - 1];
     return /*#__PURE__*/React.createElement(Grid, {
       key: file.path,
       item: true
     }, /*#__PURE__*/React.createElement(Paper, {
       elevation: 0
-    }, /*#__PURE__*/React.createElement(InsertDriveFileIcon, {
-      style: {
-        fontSize: 90
-      }
-    }), /*#__PURE__*/React.createElement(Paper, {
+    }, getIcon(ext), /*#__PURE__*/React.createElement(Paper, {
       style: {
         padding: 10
       }
@@ -221,6 +242,45 @@ var DropzoneComponent = /*#__PURE__*/forwardRef(function (props, ref) {
       }
     })))));
   });
+
+  var getIcon = function getIcon(extension) {
+    var images = ['png', 'jpg', 'jpeg', 'gif', 'jfif', 'bmp', 'psd', 'tiff', 'exif', 'raw'];
+    var movies = ['mpg', 'mpeg', 'mp4', 'm4v', 'mov', 'avi', 'asf', 'wmv'];
+    var musics = ['mp3', 'aac', 'ogg', 'wma', 'wav', 'alac', 'flac', 'aiff', 'pcm'];
+
+    if (images.includes(extension)) {
+      return /*#__PURE__*/React.createElement(ImageIcon, {
+        style: {
+          fontSize: 90
+        }
+      });
+    } else if (movies.includes(extension)) {
+      return /*#__PURE__*/React.createElement(OndemandVideoIcon, {
+        style: {
+          fontSize: 90
+        }
+      });
+    } else if (musics.includes(extension)) {
+      return /*#__PURE__*/React.createElement(MusicNoteIcon, {
+        style: {
+          fontSize: 90
+        }
+      });
+    } else if (extension == "pdf") {
+      return /*#__PURE__*/React.createElement(PictureAsPdfIcon, {
+        style: {
+          fontSize: 90
+        }
+      });
+    } else {
+      return /*#__PURE__*/React.createElement(InsertDriveFileIcon, {
+        style: {
+          fontSize: 90
+        }
+      });
+    }
+  };
+
   var filesDefault = props.defaultValue;
 
   var openNotification = function openNotification(message, variant) {
@@ -232,31 +292,24 @@ var DropzoneComponent = /*#__PURE__*/forwardRef(function (props, ref) {
   var resetFiles = function resetFiles(index) {
     setShowFiles(false);
     setShowLoader(true);
-    console.log("Passou dos Sets Bool");
     var news = [];
     news = filesAccepted;
     news.splice(index, 1);
-    console.log("Passou do 'news'");
     setTimeout(function () {
-      console.log("entrou no setTimeOut");
-
       if (news.length > 0) {
-        console.log("new length > 0");
         setFilesAccepted(news);
         setShowFiles(true);
         onChange(news);
         setShowLoader(false);
       } else {
-        console.log("new length <= 0");
         setFilesAccepted([]);
         setShowFiles(false);
         onChange([]);
         setShowLoader(false);
       }
 
-      openNotification('Você alterou os arquivos para o envio...', 'info');
+      openNotification(props.messages ? props.messages.removedFile ? props.messages.removedFile : defaultMessages.removedFile : defaultMessages.removedFile, 'info');
     }, 500);
-    console.log("passou do timeOut");
   };
 
   var styles = useStyles();
@@ -289,7 +342,7 @@ var DropzoneComponent = /*#__PURE__*/forwardRef(function (props, ref) {
     className: styles.areaFiles
   }, /*#__PURE__*/React.createElement("h4", {
     className: styles.text
-  }, "Arquivo a ser enviado: "), /*#__PURE__*/React.createElement(Grid, {
+  }, titleLoadedFiles ? titleLoadedFiles : "Arquivos Carregados", " "), /*#__PURE__*/React.createElement(Grid, {
     container: true,
     justify: "center",
     spacing: 2,

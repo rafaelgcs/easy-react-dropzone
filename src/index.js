@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { SnackbarProvider } from 'notistack'
 import DropzoneComponent from './dropzoneComponent'
 
-export const Dropzone = React.forwardRef((props, ref) => {
+export const Dropzone = forwardRef((props, ref) => {
     const onDrop = props.onDrop;
     const defaultValue = props.defaultValue;
     const onChange = props.onChange
