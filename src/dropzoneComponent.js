@@ -12,7 +12,7 @@ import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile'
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import ImageIcon from '@material-ui/icons/Image'
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf'
-import OndemandVideoIcon from '@material-ui/icons/OndemandVideo'
+import VideocamIcon from '@material-ui/icons/Videocam'
 import MusicNoteIcon from '@material-ui/icons/MusicNote'
 
 import { withSnackbar } from 'notistack'
@@ -133,7 +133,7 @@ const DropzoneComponent = forwardRef((props, ref) => {
         if (images.includes(extension)) {
             return <ImageIcon style={{ fontSize: 90 }} />
         } else if (movies.includes(extension)) {
-            return <OndemandVideoIcon style={{ fontSize: 90 }} />
+            return <VideocamIcon style={{ fontSize: 90 }} />
         } else if (musics.includes(extension)) {
             return <MusicNoteIcon style={{ fontSize: 90 }} />
         } else if (extension == "pdf") {

@@ -17,7 +17,7 @@ var InsertDriveFileIcon = _interopDefault(require('@material-ui/icons/InsertDriv
 var DeleteForeverIcon = _interopDefault(require('@material-ui/icons/DeleteForever'));
 var ImageIcon = _interopDefault(require('@material-ui/icons/Image'));
 var PictureAsPdfIcon = _interopDefault(require('@material-ui/icons/PictureAsPdf'));
-var OndemandVideoIcon = _interopDefault(require('@material-ui/icons/OndemandVideo'));
+var VideocamIcon = _interopDefault(require('@material-ui/icons/Videocam'));
 var MusicNoteIcon = _interopDefault(require('@material-ui/icons/MusicNote'));
 var notistack = require('notistack');
 
@@ -231,7 +231,7 @@ var DropzoneComponent = /*#__PURE__*/React.forwardRef(function (props, ref) {
         }
       });
     } else if (movies.includes(extension)) {
-      return /*#__PURE__*/React__default.createElement(OndemandVideoIcon, {
+      return /*#__PURE__*/React__default.createElement(VideocamIcon, {
         style: {
           fontSize: 90
         }

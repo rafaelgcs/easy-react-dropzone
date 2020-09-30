@@ -10,7 +10,7 @@ import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import ImageIcon from '@material-ui/icons/Image';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
-import OndemandVideoIcon from '@material-ui/icons/OndemandVideo';
+import VideocamIcon from '@material-ui/icons/Videocam';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import { withSnackbar, SnackbarProvider } from 'notistack';
 
@@ -224,7 +224,7 @@ var DropzoneComponent = /*#__PURE__*/forwardRef(function (props, ref) {
         }
       });
     } else if (movies.includes(extension)) {
-      return /*#__PURE__*/React.createElement(OndemandVideoIcon, {
+      return /*#__PURE__*/React.createElement(VideocamIcon, {
         style: {
           fontSize: 90
         }
