@@ -88,3 +88,39 @@ const MyDropzonePage = () => {
 
 export default MyDropzonePage
 ```
+
+## Full Example
+```javascript
+import React, {useState} from 'react'
+import { Dropzone } from 'easy-react-dropzone'
+
+const MyDropzonePage = () => {
+  const [files, setFiles] = useState([])
+  // Escolhendo as extensões
+  const extensionsAccepted = ['png','jpg','jpeg','gif']
+  // Choose Message's Text
+  const texts = {
+    removedFile: "U have changed files",
+    manyFilesSelecteds: "Successful to load files!",
+    oneFileSelected: "Successful to load the file!",
+    someFilesDontHaveEnabledExtension: "Some files don't have one of the enabled extensions...",
+    someFilesCannotToBeSended: "No uploaded files have an extension enabled"
+  }
+  return (
+  <div>
+    <h1>My Custom Full Dropzone Version</h1>
+    <Dropzone
+      textDropzone="Clique aqui ou arraste as imagens"
+      titleLoadedFiles="Os arquivos carregados são:"
+      progressBarColor="#91c5e3" // Bar Color Background - light blue
+      progressColor="#0c81c4" // Progress Color - blue
+      fileExtensions={extensionsAccepted}
+      defaultValue={files}
+      onChange={(selectedFiles) => setFiles(selectedFiles)}
+    />
+  </div>
+  )
+}
+
+export default MyDropzonePage
+```

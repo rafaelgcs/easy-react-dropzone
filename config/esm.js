@@ -10,8 +10,12 @@ export default {
     format: 'esm'
   },
   external: [
+    '@material-ui/core',
+    '@material-ui/icons',
+    'notistack',
     'react',
-    'react-dom'
+    'react-dom',
+    'react-dropzone'
   ],
   plugins: [
     babel({
