@@ -36,7 +36,7 @@ function _extends() {
 }
 
 function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest();
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
 
 function _arrayWithHoles(arr) {
@@ -44,10 +44,7 @@ function _arrayWithHoles(arr) {
 }
 
 function _iterableToArrayLimit(arr, i) {
-  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
-    return;
-  }
-
+  if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;
   var _arr = [];
   var _n = true;
   var _d = false;
@@ -73,8 +70,25 @@ function _iterableToArrayLimit(arr, i) {
   return _arr;
 }
 
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+}
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+  return arr2;
+}
+
 function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
 var useStyles = styles.makeStyles(function (theme) {
@@ -118,7 +132,7 @@ var useStyles = styles.makeStyles(function (theme) {
     }
   };
 });
-var DropzoneComponent = React__default.forwardRef(function (props, ref) {
+var DropzoneComponent = /*#__PURE__*/React__default.forwardRef(function (props, ref) {
   var _useState = React.useState(false),
       _useState2 = _slicedToArray(_useState, 2),
       showFiles = _useState2[0],
@@ -199,24 +213,24 @@ var DropzoneComponent = React__default.forwardRef(function (props, ref) {
       isDragActive = _useDropzone.isDragActive;
 
   var files = filesAccepted.map(function (file, index) {
-    return React__default.createElement(Grid, {
+    return /*#__PURE__*/React__default.createElement(Grid, {
       key: file.path,
       item: true
-    }, React__default.createElement(Paper, {
+    }, /*#__PURE__*/React__default.createElement(Paper, {
       elevation: 0
-    }, React__default.createElement(InsertDriveFileIcon, {
+    }, /*#__PURE__*/React__default.createElement(InsertDriveFileIcon, {
       style: {
         fontSize: 90
       }
-    }), React__default.createElement(Paper, {
+    }), /*#__PURE__*/React__default.createElement(Paper, {
       style: {
         padding: 10
       }
-    }, file.path, " ", React__default.createElement(IconButton, {
+    }, file.path, " ", /*#__PURE__*/React__default.createElement(IconButton, {
       onClick: function onClick() {
         return resetFiles(index);
       }
-    }, " ", React__default.createElement(DeleteForeverIcon, {
+    }, " ", /*#__PURE__*/React__default.createElement(DeleteForeverIcon, {
       style: {
         fontSize: 20
       }
@@ -254,28 +268,28 @@ var DropzoneComponent = React__default.forwardRef(function (props, ref) {
   };
 
   var styles$$1 = useStyles();
-  return React__default.createElement("section", {
+  return /*#__PURE__*/React__default.createElement("section", {
     className: styles$$1.section
-  }, React__default.createElement("div", _extends({
+  }, /*#__PURE__*/React__default.createElement("div", _extends({
     style: {
       cursor: 'pointer'
     }
   }, getRootProps({
     className: 'dropzone'
-  })), React__default.createElement("input", getInputProps()), React__default.createElement("p", {
+  })), /*#__PURE__*/React__default.createElement("input", getInputProps()), /*#__PURE__*/React__default.createElement("p", {
     className: styles$$1.title
-  }, textDropzone ? textDropzone : "Arraste e solte arquivos ou clique aqui"), React__default.createElement(BackupIcon, {
+  }, textDropzone ? textDropzone : "Arraste e solte arquivos ou clique aqui"), /*#__PURE__*/React__default.createElement(BackupIcon, {
     color: 'disabled',
     style: {
       fontSize: 90
     }
-  })), showLoader && React__default.createElement(ColorLinearProgress, {
+  })), showLoader && /*#__PURE__*/React__default.createElement(ColorLinearProgress, {
     variant: "query"
-  }), showFiles && React__default.createElement("aside", {
+  }), showFiles && /*#__PURE__*/React__default.createElement("aside", {
     className: styles$$1.areaFiles
-  }, React__default.createElement("h4", {
+  }, /*#__PURE__*/React__default.createElement("h4", {
     className: styles$$1.text
-  }, "Arquivo a ser enviado: "), React__default.createElement(Grid, {
+  }, "Arquivo a ser enviado: "), /*#__PURE__*/React__default.createElement(Grid, {
     container: true,
     justify: "center",
     spacing: 2,
@@ -286,7 +300,7 @@ var DropzoneComponent = React__default.forwardRef(function (props, ref) {
 });
 var DropzoneComponent$1 = notistack.withSnackbar(DropzoneComponent);
 
-var Dropzone = React__default.forwardRef(function (props, ref) {
+var Dropzone = /*#__PURE__*/React__default.forwardRef(function (props, ref) {
   var onDrop = props.onDrop;
   var defaultValue = props.defaultValue;
   var onChange = props.onChange;
@@ -294,9 +308,9 @@ var Dropzone = React__default.forwardRef(function (props, ref) {
   var textDropzone = props.textDropzone;
   var progressColor = props.progressColor;
   var progressBarColor = props.progressBarColor;
-  return React__default.createElement(notistack.SnackbarProvider, {
+  return /*#__PURE__*/React__default.createElement(notistack.SnackbarProvider, {
     maxSnack: 3
-  }, React__default.createElement(DropzoneComponent$1, {
+  }, /*#__PURE__*/React__default.createElement(DropzoneComponent$1, {
     progressBarColor: progressBarColor,
     progressColor: progressColor,
     textDropzone: textDropzone,
