@@ -125,20 +125,6 @@ const DropzoneComponent = forwardRef((props, ref) => {
         // onChange(newAcceptedFiles);
         return newAcceptedFiles;
     }, [])
-    const { acceptedFiles, getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
-    const files = filesAccepted.map((file, index) => {
-        let arr = file.path.split('.')
-        let ext = arr[arr.length - 1]
-        return (
-            <Grid key={file.path} item>
-                <Paper elevation={0}>
-                    {getIcon(ext)}
-                    <Paper style={{ padding: 10 }}>{file.path} <IconButton onClick={() => resetFiles(index)}> <DeleteForeverIcon style={{ fontSize: 20 }} /></IconButton></Paper>
-                </Paper>
-            </Grid>
-        );
-    })
-
     const getIcon = (extension) => {
         let images = ['png', 'jpg', 'jpeg', 'gif', 'jfif', 'bmp', 'psd', 'tiff', 'exif', 'raw'];
         let movies = ['mpg', 'mpeg', 'mp4', 'm4v', 'mov', 'avi', 'asf', 'wmv'];
@@ -156,6 +142,19 @@ const DropzoneComponent = forwardRef((props, ref) => {
             return <InsertDriveFileIcon style={{ fontSize: 90 }} />
         }
     }
+    const { acceptedFiles, getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+    const files = filesAccepted.map((file, index) => {
+        let arr = file.path.split('.')
+        let ext = arr[arr.length - 1]
+        return (
+            <Grid key={file.path} item>
+                <Paper elevation={0}>
+                    {getIcon(ext)}
+                    <Paper style={{ padding: 10 }}>{file.path} <IconButton onClick={() => resetFiles(index)}> <DeleteForeverIcon style={{ fontSize: 20 }} /></IconButton></Paper>
+                </Paper>
+            </Grid>
+        );
+    })
 
     let filesDefault = props.defaultValue
 

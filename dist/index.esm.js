@@ -212,37 +212,6 @@ var DropzoneComponent = /*#__PURE__*/forwardRef(function (props, ref) {
     return newAcceptedFiles;
   }, []);
 
-  var _useDropzone = useDropzone({
-    onDrop: onDrop
-  }),
-      acceptedFiles = _useDropzone.acceptedFiles,
-      getRootProps = _useDropzone.getRootProps,
-      getInputProps = _useDropzone.getInputProps,
-      isDragActive = _useDropzone.isDragActive;
-
-  var files = filesAccepted.map(function (file, index) {
-    var arr = file.path.split('.');
-    var ext = arr[arr.length - 1];
-    return /*#__PURE__*/React.createElement(Grid, {
-      key: file.path,
-      item: true
-    }, /*#__PURE__*/React.createElement(Paper, {
-      elevation: 0
-    }, getIcon(ext), /*#__PURE__*/React.createElement(Paper, {
-      style: {
-        padding: 10
-      }
-    }, file.path, " ", /*#__PURE__*/React.createElement(IconButton, {
-      onClick: function onClick() {
-        return resetFiles(index);
-      }
-    }, " ", /*#__PURE__*/React.createElement(DeleteForeverIcon, {
-      style: {
-        fontSize: 20
-      }
-    })))));
-  });
-
   var getIcon = function getIcon(extension) {
     var images = ['png', 'jpg', 'jpeg', 'gif', 'jfif', 'bmp', 'psd', 'tiff', 'exif', 'raw'];
     var movies = ['mpg', 'mpeg', 'mp4', 'm4v', 'mov', 'avi', 'asf', 'wmv'];
@@ -281,6 +250,36 @@ var DropzoneComponent = /*#__PURE__*/forwardRef(function (props, ref) {
     }
   };
 
+  var _useDropzone = useDropzone({
+    onDrop: onDrop
+  }),
+      acceptedFiles = _useDropzone.acceptedFiles,
+      getRootProps = _useDropzone.getRootProps,
+      getInputProps = _useDropzone.getInputProps,
+      isDragActive = _useDropzone.isDragActive;
+
+  var files = filesAccepted.map(function (file, index) {
+    var arr = file.path.split('.');
+    var ext = arr[arr.length - 1];
+    return /*#__PURE__*/React.createElement(Grid, {
+      key: file.path,
+      item: true
+    }, /*#__PURE__*/React.createElement(Paper, {
+      elevation: 0
+    }, getIcon(ext), /*#__PURE__*/React.createElement(Paper, {
+      style: {
+        padding: 10
+      }
+    }, file.path, " ", /*#__PURE__*/React.createElement(IconButton, {
+      onClick: function onClick() {
+        return resetFiles(index);
+      }
+    }, " ", /*#__PURE__*/React.createElement(DeleteForeverIcon, {
+      style: {
+        fontSize: 20
+      }
+    })))));
+  });
   var filesDefault = props.defaultValue;
 
   var openNotification = function openNotification(message, variant) {
